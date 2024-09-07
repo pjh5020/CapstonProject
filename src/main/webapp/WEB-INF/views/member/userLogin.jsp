@@ -14,20 +14,19 @@
     <form id="userLoginForm">
         <div class="form-group">
             <label for="userEmail">이메일</label>
-            <input type="text" id="userEmail" name="userEmail" required>
+            <input type="text" id="useremail" name="useremail" required>
         </div>
         <div class="form-group">
             <label for="userPassword">비밀번호</label>
-            <input type="password" id="userPassword" name="userPassword" required>
+            <input type="password" id="userpassword" name="userpassword" required>
         </div>
         <button type="submit" class="btn">로그인</button>
     </form>
     <div class="links">
-        <a href="/company/login">컴퍼니 로그인</a> <!-- 컴퍼니 로그인 페이지로 이동 -->
         <a href="#">비밀번호 찾기</a> <!-- 비밀번호 찾기 페이지로 이동 -->
         <a href="/member/join">회원가입</a> <!-- 회원가입 페이지로 이동 -->
     </div>
 </div>
-<script src="/resources/script/userLogin.js"></script>
+<script src="/resources/script/userLogin.js"></script>-
 </body>
 </html>

@@ -22,10 +22,10 @@ public class LoginController {
 
     private final UserLoginService userLoginService;
 
-    @GetMapping("/userLoginForm")
+    @GetMapping("/loginForm")
     public String loginP(){
         
-        return "/login";
+        return "member/userLogin";
     }
 
 

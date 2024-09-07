@@ -20,7 +20,6 @@ public class JoinService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
     public void joinProcess(JoinDTO joinDTO) {
         String email = joinDTO.getUseremail();
         String password = joinDTO.getUserpassword();
@@ -32,8 +31,9 @@ public class JoinService {
         Boolean isExist = userRepository.existsByUseremail(email);
 
         if (isExist) {
-            return;
+            throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
         }
+
         UserEntity userEntity = new UserEntity();
         userEntity.setUseremail(joinDTO.getUseremail());  // 이메일 설정
         userEntity.setUserpassword(passwordEncoder.encode(joinDTO.getUserpassword()));  // 비밀번호 암호화 후 설정
@@ -42,12 +42,16 @@ public class JoinService {
         userEntity.setUserdepartment(joinDTO.getUserdepartment());  // 학과 설정
         userEntity.setUsergrade(joinDTO.getUsergrade());  // 학년 설정
         userEntity.setUserphonenumber(joinDTO.getUserphonenumber());  // 전화번호 설정
-        userEntity.setUserprofileimage(joinDTO.getUserprofileimage());  // 프로필 이미지 설정
-        userEntity.setRole(RolesType.ROLE_MEMBER);  // 기본 역할 설
+
+        if (joinDTO.getUserprofileimage() == null || joinDTO.getUserprofileimage().isEmpty()) {
+            userEntity.setUserprofileimage("default_profile_image.png");  // 기본 프로필 이미지 설정
+        } else {
+            userEntity.setUserprofileimage(joinDTO.getUserprofileimage());  // 프로필 이미지 설정
+        }
+        userEntity.setRole(RolesType.ROLE_MEMBER);  // 기본 역할 설정
 
         userRepository.save(userEntity);
     }
-
     /**
      * ID(userEmail) Check
      */

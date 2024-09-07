@@ -120,19 +120,11 @@ public class SpringSecurityConfig {
     private RequestMatcher[] permitAllRequestMatchers() {
         List<RequestMatcher> requestMatchers = List.of(
                 // 웹 리소스
-                antMatcher(POST, "/com/login"),            // 로그인
-                antMatcher(POST, "/com/join/first"),       // 회원가입 1단계
-                antMatcher(POST, "/com/join/second"),      // 회원가입 2단계
-                antMatcher(POST, "/com/checkId"),          // ID 중복 체크
+
                 antMatcher(GET, "/WEB-INF/views/**"),          // 웹 리소스
                 antMatcher(GET, "/resources/**"),
-                antMatcher(GET, "/company/**"),              // 기업 페이지
-/*
-                antMatcher("/member/**"),
-*/
-                antMatcher("/ws/**"),
+                antMatcher("/member/**")
 
-                antMatcher("/github/**")// 정적 리소스
         );
 
         return requestMatchers.toArray(RequestMatcher[]::new);

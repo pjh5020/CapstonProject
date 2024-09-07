@@ -31,7 +31,7 @@ public class JoinController {
     }
     @GetMapping("/join")
     public String joinProcess() {
-        return "member/user/userJoin"; // 회원가입 완료 후 리다이렉트할 페이지
+        return "member/userJoin"; // 회원가입 완료 후 리다이렉트할 페이지
     }
 
     @PostMapping("/joinProc")
