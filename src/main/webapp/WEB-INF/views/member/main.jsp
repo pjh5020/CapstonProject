@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />   
     <title>repl.it</title>
-    <link href="styles/common.css" rel="stylesheet" type="text/css" />
-    <link href="styles/nav.css" rel="stylesheet" type="text/css" />
-    <link href="styles/body.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/style/common.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/style/nav.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/style/mainBody.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -181,7 +181,7 @@
                     <input class="inputBox" type="text" placeholder="댓글 달기...">
                 </div>
                 <span>
-            <button class="buttonBox" type="summit">게시</button>
+            <button class="buttonBox" type="submit">게시</button>
           </span>
             </div>
         </div>
@@ -296,7 +296,7 @@
         </div>
     </aside>
 </div>
-<script src="js/main.js"></script>
+<script src="/resources/script/main.js"></script>
 </body>
 
 </html>
