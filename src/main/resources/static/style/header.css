@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+/* 헤더 스타일 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left .logo {
+    height: 40px;
+}
+
+.search-box {
+    flex: 1;
+    text-align: center;
+}
+
+.search-input {
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    background-color: #fafafa;
+    font-size: 14px;
+    text-align: center;
+}
+
+.search-input::placeholder {
+    color: #8e8e8e;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right .icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.profile-icon {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dbdbdb;
+}
+
+.icon:hover, .profile-icon:hover {
+    opacity: 0.7;
+}
+
+/* 반응형 스타일 */
+@media screen and (max-width: 768px) {
+    .search-input {
+        width: 150px;
+    }
+
+    .header-right .icon {
+        margin-left: 10px;
+    }
+}
