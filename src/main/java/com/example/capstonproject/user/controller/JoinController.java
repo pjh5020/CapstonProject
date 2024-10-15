@@ -69,5 +69,5 @@ public class JoinController {
         return ResponseEntity.ok(new ResponseDto(ResponseCode.SUCCESS, message));
     }
 
-    
+
 }
