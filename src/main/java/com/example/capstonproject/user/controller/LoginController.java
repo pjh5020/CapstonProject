@@ -22,11 +22,6 @@ public class LoginController {
 
     private final UserLoginService userLoginService;
 
-    @GetMapping("/loginForm")
-    public String loginP(){
-        
-        return "member/userLogin";
-    }
 
 
 

@@ -1,5 +1,6 @@
 package com.example.capstonproject.user.controller;
 
+import com.example.capstonproject.image.ImageService;
 import com.example.capstonproject.response.ResponseCode;
 import com.example.capstonproject.response.ResponseDto;
 import com.example.capstonproject.response.ResponseMessage;
@@ -8,10 +9,8 @@ import com.example.capstonproject.user.service.JoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -21,7 +20,6 @@ import java.util.Map;
 public class JoinController {
 
     private final JoinService joinService;
-
 
 
     @Autowired
@@ -35,21 +33,17 @@ public class JoinController {
     }
 
     @PostMapping("/joinProc")
-    public ResponseEntity<String> joinProcess(@RequestBody JoinDTO joinDTO) {
+    public ResponseEntity<String> joinProcess(
+            @RequestPart("joinDTO") JoinDTO joinDTO,
+            @RequestPart(value = "userprofileimage", required = false) MultipartFile profileImage) {
+
         try {
-            joinService.joinProcess(joinDTO);
+            joinService.joinProcess(joinDTO, profileImage);
             return ResponseEntity.ok("회원가입이 성공적으로 완료되었습니다.");
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력 데이터로 인한 오류 처리
-            System.err.println("회원가입 실패: " + e.getMessage());
             return ResponseEntity.badRequest().body("회원가입 실패: " + e.getMessage());
-        } catch (Exception e) {
-            // 기타 예외 처리
-            System.err.println("회원가입 중 오류 발생: " + e.getMessage());
-            return ResponseEntity.status(500).body("회원가입 중 오류가 발생했습니다.");
         }
     }
-
 
     @PostMapping("/checkId")
     public ResponseEntity<ResponseDto> checkId(@RequestBody Map<String, String> requestBody) {

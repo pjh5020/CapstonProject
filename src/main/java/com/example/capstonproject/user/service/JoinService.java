@@ -1,26 +1,29 @@
 package com.example.capstonproject.user.service;
 
-
 import com.example.capstonproject.enums.RolesType;
+import com.example.capstonproject.image.ImageService;  // ImageService 추가
 import com.example.capstonproject.user.dto.JoinDTO;
 import com.example.capstonproject.user.entity.UserEntity;
 import com.example.capstonproject.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class JoinService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ImageService imageService;  // ImageService 주입
 
     @Autowired
-    public JoinService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public JoinService(UserRepository userRepository, PasswordEncoder passwordEncoder, ImageService imageService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.imageService = imageService;
     }
-    public void joinProcess(JoinDTO joinDTO) {
+
+    public void joinProcess(JoinDTO joinDTO, MultipartFile profileImage) {
         String email = joinDTO.getUseremail();
         String password = joinDTO.getUserpassword();
 
@@ -43,19 +46,23 @@ public class JoinService {
         userEntity.setUsergrade(joinDTO.getUsergrade());  // 학년 설정
         userEntity.setUserphonenumber(joinDTO.getUserphonenumber());  // 전화번호 설정
 
-        if (joinDTO.getUserprofileimage() == null || joinDTO.getUserprofileimage().isEmpty()) {
-            userEntity.setUserprofileimage("default_profile_image.png");  // 기본 프로필 이미지 설정
+        // 프로필 이미지 처리
+        if (profileImage != null && !profileImage.isEmpty()) {
+            String uploadedImagePath = imageService.saveImage(profileImage);  // ImageService로 이미지 저장
+            userEntity.setUserprofileimage(uploadedImagePath);  // 업로드된 이미지 경로 설정
         } else {
-            userEntity.setUserprofileimage(joinDTO.getUserprofileimage());  // 프로필 이미지 설정
+            userEntity.setUserprofileimage("default_profile_image.png");  // 기본 프로필 이미지 설정
         }
+
         userEntity.setRole(RolesType.ROLE_MEMBER);  // 기본 역할 설정
 
         userRepository.save(userEntity);
     }
+
     /**
      * ID(userEmail) Check
      */
-    public boolean checkId(String userEmail){
+    public boolean checkId(String userEmail) {
         return !userRepository.findByUseremail(userEmail).isPresent();
     }
 }
