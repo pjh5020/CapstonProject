@@ -30,112 +30,14 @@
             transition: all 0.3s;
         }
 
-        /* 왼쪽 사이드바 - 색상 변경 */
-        .sidebar {
-            background-color: #2c3e50; /* 메인 사이드바 배경 색상 변경 */
-            color: #ecf0f1; /* 글자 색상 */
-            padding: 20px;
-            grid-area: sidebar;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        /* 사이드바 링크 스타일 */
-        .sidebar a {
-            color: #ecf0f1; /* 링크 글자 색상 */
-            text-decoration: none;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #34495e; /* 링크 배경 색상 */
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        /* 링크 호버 효과 */
-        .sidebar a:hover {
-            background-color: #1abc9c; /* 링크 호버 시 색상 */
-        }
-
-        /* 숨기기 버튼 */
-        .sidebar .toggle-btn {
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            background-color: #1abc9c; /* 숨기기 버튼 색상 */
-            color: white;
-            border-radius: 50%;
-            padding: 5px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        /* 숨기기 가능한 왼쪽 사이드바 */
-        .sidebar.collapsed {
-            width: 35px;
-        }
-
-        .sidebar.collapsed a span {
-            display: none;
-        }
-
-        /* 아이콘만 보이는 경우 */
-        .collapsed .toggle-btn {
-            transform: rotate(180deg);
-        }
-
-        /* 프로필 영역 - 위치 상단 우측 */
-        .profile-container {
-            position: fixed;
-            top: 10px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .profile-container img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .profile-container .user-details {
-            text-align: right;
-        }
-
-        .profile-container .user-details .user-name {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .profile-container .user-details .user-email {
-            font-size: 12px;
-            color: green;
-        }
-
-        .profile-container .user-details .user-school {
-            color: blue;
-            font-size: 14px;
-        }
-
         /* 중앙 게시글 영역 */
         .main {
             grid-area: main;
             padding: 20px;
             padding-left: 50px;
-            padding-right: 50px;
             overflow-y: auto;
             background-color: white;
             transition: all 0.3s;
-        }
-
-        .sidebar.collapsed ~ .main {
-            padding-left: 80px; /* 사이드바가 접히면 왼쪽으로 이동 */
-            padding-right: 80px; /* 오른쪽에도 공백 추가 */
         }
 
         .post-card {
@@ -146,32 +48,61 @@
             padding: 20px;
         }
 
-        .post-image-placeholder {
-            width: 100%;
-            height: 300px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .post-card .post-header {
+        .post-header {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
 
-        .post-card .post-header img {
+        .post-header img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             margin-right: 10px;
         }
 
-        .post-card .post-header .user-info {
-            font-weight: bold;
+        /* 게시글 이미지 영역 */
+        .post-image-placeholder {
+            position: relative;
+            text-align: center;
         }
 
-        .post-card .post-description {
+        .post-image-placeholder img {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            color: black;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* 이미지 인덱스 표시 */
+        .image-index {
+            position: absolute;
+            top: 3%;
+            right: 10%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .post-description {
             margin: 10px 0;
         }
 
@@ -205,6 +136,8 @@
             font-size: 12px;
         }
 
+
+
         /* 푸터 */
         .footer {
             grid-area: footer;
@@ -212,102 +145,148 @@
             padding: 10px;
             background-color: #f4f4f4;
         }
+
+        .main-content {
+            margin-right: 18%;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <!-- 왼쪽 사이드바 -->
-    <div class="sidebar" id="sidebar">
-        <span class="toggle-btn" id="toggleBtn">&#10094;</span>
-        <a href="/member/main"><i class="fas fa-home"></i> <span>홈</span></a>
-        <a href="/member/myProfile"><i class="fas fa-user"></i> <span>내 페이지</span></a>
-        <a href="/member/project"><i class="fas fa-project-diagram"></i> <span>프로젝트</span></a>
-        <a href="#"><i class="fas fa-comment-dots"></i> <span>채팅</span></a>
-        <a href="/member/picture"><i class="fas fa-camera"></i> <span>내 사진첩</span></a>
-    </div>
+    <!-- 왼쪽 사이드바 포함 -->
+    <jsp:include page="/WEB-INF/views/member/sidebar/sidebar.jsp" flush="true" />
 
     <!-- 중앙 게시글 영역 -->
-    <div class="main">
-        <div class="post-card">
-            <div class="post-header">
-                <img src="/mnt/data/image.png" alt="유저 프로필">
-                <div class="user-info">
-                    <span>abcabc123@naver.com님</span>
-                    <span>서울대학교</span>
+    <div class="main-content">
+        <div class="main">
+            <!-- 첫 번째 게시글 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="/resources/image/경민대.png" alt="유저 프로필">
+                    <div class="user-info">
+                        <span>abcabc123@naver.com님</span>
+                        <span>경민대학교</span>
+                    </div>
+                </div>
+                <!-- 게시글 이미지 추가 -->
+                <div class="post-image-placeholder">
+                    <span class="arrow left">&#10094;</span>
+                    <img id="postImage" src="/resources/image/seoulcampuse.jpg" alt="게시글 이미지">
+                    <span class="arrow right">&#10095;</span>
+                    <div class="image-index">
+                        <span id="imageIndex">1/3</span>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p><span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 경민대학교와 관련된 내용입니다.</p>
+                </div>
+                <div class="post-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-share-square"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="far fa-bookmark"></i>
+                </div>
+                <div class="post-comments">
+                    <div class="comment">
+                        <span class="comment-user">qwert123@gmail.com</span>
+                        <span class="comment-text">좋아요!</span>
+                        <div class="comment-date">3일 전</div>
+                    </div>
                 </div>
             </div>
-            <div class="post-image-placeholder"></div>
-            <div class="post-description">
-                <p> <span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 서울대학교와 관련된 내용입니다.</p>
-            </div>
-            <div class="post-icons">
-                <i class="far fa-heart"></i>
-                <i class="far fa-comment"></i>
-                <i class="far fa-share-square"></i>
-            </div>
-            <div class="post-comments">
-                <div class="comment">
-                    <span class="comment-user">qwert123@gmail.com</span>
-                    <span class="comment-text">좋아요!</span>
-                    <div class="comment-date">3일 전</div>
-                </div>
-            </div>
-        </div>
 
-        <!-- 두 번째 게시물 -->
-        <div class="post-card">
-            <div class="post-header">
-                <img src="/mnt/data/image.png" alt="유저 프로필">
-                <div class="user-info">
-                    <span>Koreun9515@naver.com님</span>
-                    <span>경민대학교</span>
+            <!-- 두 번째 게시글 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="/resources/image/경민대.png" alt="유저 프로필">
+                    <div class="user-info">
+                        <span>abcabc123@naver.com님</span>
+                        <span>경민대학교</span>
+                    </div>
                 </div>
-            </div>
-            <div class="post-image-placeholder"></div>
-            <div class="post-description">
-                <p> <span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 서울대학교와 관련된 내용입니다.</p>
-            </div>
-            <div class="post-icons">
-                <i class="far fa-heart"></i>
-                <i class="far fa-comment"></i>
-                <i class="far fa-share-square"></i>
-            </div>
-            <div class="post-comments">
-                <div class="comment">
-                    <span class="comment-user">testemail@gmail.com</span>
-                    <span class="comment-text">정말 멋집니다!</span>
-                    <div class="comment-date">1일 전</div>
+                <!-- 게시글 이미지 추가 -->
+                <div class="post-image-placeholder">
+                    <span class="arrow left">&#10094;</span>
+                    <img id="postImage" src="/resources/image/seoulcampuse.jpg" alt="게시글 이미지">
+                    <span class="arrow right">&#10095;</span>
+                    <div class="image-index">
+                        <span id="imageIndex">1/3</span>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p><span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 경민대학교와 관련된 내용입니다.</p>
+                </div>
+                <div class="post-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-share-square"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="far fa-bookmark"></i>
+                </div>
+                <div class="post-comments">
+                    <div class="comment">
+                        <span class="comment-user">qwert123@gmail.com</span>
+                        <span class="comment-text">좋아요!</span>
+                        <div class="comment-date">3일 전</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 프로필 영역 - 상단 우측 위치 -->
-    <div class="profile-container">
-        <img src="/mnt/data/image.png" alt="프로필 이미지">
-        <div class="user-details">
-            <span class="user-name">정인대학교</span><br>
-            <span class="user-email">ghfhdaum@naver.com</span>
-        </div>
-    </div>
+    <jsp:include page="/WEB-INF/views/member/header/profile.jsp" flush="true" />
 
+    <!-- 드롭다운 메뉴 추가 -->
+    <div class="profile-dropdown" id="profileDropdown" style="display:none;">
+        <a href="#">내 정보</a>
+        <a href="#" id="logoutBtn">로그아웃</a>
+    </div>
+<%--
     <!-- 푸터 -->
     <div class="footer">
         <span>회사소개 | 인재채용 | 회원약관 | 개인정보처리방침 | 이메일무단수집거부 | 채용정보 API | 재무문의 | 고객센터</span>
-    </div>
+    </div>--%>
 
 </div>
 
-<!-- JavaScript to collapse the sidebar -->
+<!-- 이미지 슬라이더 로직 -->
 <script>
-    document.getElementById('toggleBtn').addEventListener('click', function() {
-        const sidebar = document.getElementById('sidebar');
-        const container = document.querySelector('.container');
-        sidebar.classList.toggle('collapsed');
-        container.classList.toggle('collapsed');
+    document.addEventListener('DOMContentLoaded', function () {
+        const images = [
+            "/resources/image/경민대배경.jpg",
+            "/resources/image/경민배경2.jpg",
+            "/resources/image/seoulcampuse2.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        const postImage = document.getElementById('postImage');
+        const imageIndex = document.getElementById('imageIndex');
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
+
+        function updateImage() {
+            postImage.src = images[currentIndex];
+            imageIndex.textContent = `${currentIndex + 1}/${images.length}`;
+        }
+
+        leftArrow.addEventListener('click', function () {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateImage();
+        });
+
+        rightArrow.addEventListener('click', function () {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateImage();
+        });
+
+        updateImage();
     });
+
+
 </script>
 
 </body>
