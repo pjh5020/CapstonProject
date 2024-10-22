@@ -8,5 +8,9 @@
         <span class="user-email">ghfhdaum@naver.com</span>
     </div>
 </div>
+<div class="profile-dropdown" id="profileDropdown" style="display:none;">
+    <a href="#">내 정보</a>
+    <a href="#" id="logoutBtn">로그아웃</a>
+</div>
 <link rel="stylesheet" type="text/css" href="/resources/style/header.css">
 <script src="/resources/script/header.js"></script>
