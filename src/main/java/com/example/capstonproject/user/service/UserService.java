@@ -1,5 +1,6 @@
 package com.example.capstonproject.user.service;
 
+import com.example.capstonproject.enums.RolesType;
 import com.example.capstonproject.image.ImageService;
 import com.example.capstonproject.security.service.UserDetailsImpl;
 import com.example.capstonproject.user.dto.UserRequestDto;
@@ -35,5 +36,14 @@ public class UserService {
     public UserEntity getUserDetails(UserDetailsImpl userDetails){
         return userRepository.findById(userDetails.getEmail())
                 .orElseThrow(()->new RuntimeException("사용자를 찾을 수 없습니다."));
+    }
+
+    public void deleteUser(UserDetailsImpl userDetails){
+        UserEntity user = userRepository.findById(userDetails.getEmail())
+                .orElseThrow(()->new RuntimeException("사용자가 일치하지 않습니다."));
+
+        user.setRole(RolesType.ROLE_DEACTIVATE);
+
+        userRepository.save(user);
     }
 }

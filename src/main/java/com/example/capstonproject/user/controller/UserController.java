@@ -29,4 +29,10 @@ public class UserController {
         UserEntity user = userService.getUserDetails(userDetails);
         return ResponseEntity.ok(new BfResponse<>(SUCCESS, user));
     }
+
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<BfResponse<?>> deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        userService.deleteUser(userDetails);
+        return ResponseEntity.ok(new BfResponse<>(SUCCESS, "user delete successfully"));
+    }
 }

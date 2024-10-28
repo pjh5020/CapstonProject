@@ -31,5 +31,4 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private RolesType role = RolesType.ROLE_MEMBER;
 
-
 }
