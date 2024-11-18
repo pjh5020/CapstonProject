@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userPhonenumber = document.getElementById('userphonenumber').value;
 
         // 서버에 보낼 데이터 객체를 만듭니다.
-        const formData = {
+        const rformData = {
             useremail: userEmail,
             userpassword: userPassword,
             username: userName,

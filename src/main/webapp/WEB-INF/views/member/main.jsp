@@ -1,302 +1,114 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />   
-    <title>repl.it</title>
-    <link href="/resources/style/common.css" rel="stylesheet" type="text/css" />
-    <link href="/resources/style/nav.css" rel="stylesheet" type="text/css" />
-    <link href="/resources/style/mainBody.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EveryTime</title>
+
+    <!-- Font Awesome 아이콘 및 스타일 적용 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/style/mainBody.css">
+
+
 </head>
-
 <body>
-<header>
-    <div class="left_box">
-        <div class="camera_box">
-            <img class="camera" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/logo.png"
-                 alt="인스타 사진" />
-        </div>
-        <div class="line">|</div>
-        <div class="logo_box">
-            <img class="logo" src="img/logo_text.png" alt="인스타 로고" />
+
+<div class="container">
+
+    <!-- 왼쪽 사이드바 포함 -->
+    <jsp:include page="/WEB-INF/views/member/sidebar/sidebar.jsp" flush="true" />
+
+    <!-- 중앙 게시글 영역 -->
+    <div class="main-content">
+        <div class="main">
+            <!-- 첫 번째 게시글 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="/resources/image/경민대.png" alt="유저 프로필">
+                    <div class="user-info">
+                        <span>abcabc123@naver.com님</span>
+                        <span>경민대학교</span>
+                    </div>
+                </div>
+                <!-- 게시글 이미지 추가 -->
+                <div class="post-image-placeholder">
+                    <span class="arrow left">&#10094;</span>
+                    <img id="postImage" src="/resources/image/seoulcampuse.jpg" alt="게시글 이미지">
+                    <span class="arrow right">&#10095;</span>
+                    <div class="image-index">
+                        <span id="imageIndex">1/3</span>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p><span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 경민대학교와 관련된 내용입니다.</p>
+                </div>
+                <div class="post-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-share-square"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="far fa-bookmark"></i>
+                </div>
+                <div class="post-comments">
+                    <div class="comment">
+                        <span class="comment-user">qwert123@gmail.com</span>
+                        <span class="comment-text">좋아요!</span>
+                        <div class="comment-date">3일 전</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 두 번째 게시글 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="/resources/image/경민대.png" alt="유저 프로필">
+                    <div class="user-info">
+                        <span>abcabc123@naver.com님</span>
+                        <span>경민대학교</span>
+                    </div>
+                </div>
+                <!-- 게시글 이미지 추가 -->
+                <div class="post-image-placeholder">
+                    <span class="arrow left">&#10094;</span>
+                    <img id="postImage" src="/resources/image/seoulcampuse.jpg" alt="게시글 이미지">
+                    <span class="arrow right">&#10095;</span>
+                    <div class="image-index">
+                        <span id="imageIndex">1/3</span>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p><span class="comment-user">qwert123@gmail.com</span> : 이 게시물은 경민대학교와 관련된 내용입니다.</p>
+                </div>
+                <div class="post-icons">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-share-square"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="far fa-bookmark"></i>
+                </div>
+                <div class="post-comments">
+                    <div class="comment">
+                        <span class="comment-user">qwert123@gmail.com</span>
+                        <span class="comment-text">좋아요!</span>
+                        <div class="comment-date">3일 전</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <span class="seach_box">
-      <input type="search" class="search" placeholder="검색" />
-      <div class="magnifier_box">
-        <img class="magnifier" src="img/magnifier.png" alt="검색버튼">
-      </div>
-    </span>
-    <div class="right_box">
-        <div class="home_box">
-            <img class="img_size" src="img/home.png" alt="탐색" />
-        </div>
-        <div class="direct_box">
-            <img class="img_size" src="img/direct.png" alt="하트" />
-        </div>
-        <div class="compass_box">
-            <img class="compass" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/explore.png"
-                 alt="내 프로필" />
-        </div>
-        <div class="myProfile_box">
-            <img class="myProfile" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png"
-                 alt="내 프로필" />
-        </div>
-        <div class="myProfile_box_2">
-            <img class="my_profile" src="img/picture8.png" alt="내 프로필" />
-        </div>
-    </div>
-</header>
-<!--/header-->
 
-<!--body-->
-<div class="none"></div>
-<div class="main_body">
-    <article>
-        <div class="story">
-            <ul class="story_list">
-                <li class="sub_story">
-                    <div class="text">
-                        <img src="img/picture1.png" alt="프로필">
-                        <span>sokujun</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture2.png" alt="프로필">
-                            <span>vvliinaa_</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture3.png" alt="프로필">
-                            <span>sunmerrr</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture4.png" alt="프로필">
-                            <span>lovee.jane</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture5.png" alt="프로필">
-                            <span>ilhan.shin</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture6.png" alt="프로필">
-                            <span>sangsi</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="sub_story">
-                        <div class="text">
-                            <img src="img/picture7.png" alt="프로필">
-                            <span>s_sewon</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="empty_box"></div>
-        <div class="feed">
-            <div class="feed_id">
-                <div class="id_round">
-                    <div class="id_box">
-                        <div class="id_box_img">
-                            <img class="id_img" src="img/picture8.png" alt="내 프로필">
-                        </div>
-                        <div class="id_container">
-                            <div class="id_name">s_sewon</div>
-                            <div class="place">제주 협재 해수욕장</div>
-                        </div>
-                    </div>
-                    <div class="more_details">
-                        <img src="img/more.png" alt="더보기">
-                    </div>
-                </div>
-            </div>
-            <div class="feed_picture">
-                <img src="img/picture7.png" alt="피드 사진">
-            </div>
-            <!--feedbottom-->
-            <div class="feed_bottom">
-                <div class="emoticon_box">
-                    <div class="emoticon_box2">
-                        <div class="heart_box">
-                            <img class="heart" src="img/heart.png" alt="하트">
-                        </div>
-                        <div class="comment_box">
-                            <img class="coment" src="img/comment.png" alt="코멘트" />
-                        </div>
-                        <div class="direct_box">
-                            <img class="direct" src="img/direct.png" alt="종이비행기" />
-                        </div>
-                    </div>
-                    <div class="bookmark_box">
-                        <img class="bookmark" src="img/bookmark.png" alt="공유" />
-                    </div>
-                </div>
-            </div>
-            <!--/feedbottom-->
-            <div class="feed_like_box">
-                <div class="feed_like_picture">
-                    <img class="feed_like_peolpe" src="img/picture8.png" alt="세원">
-                </div>
-                <div class="feed_like">s_sewon님 외 263명이 좋아합니다.</div>
-            </div>
-            <div class="feed_article">
-                <div class="feed_article_box">
-                    <div class="comments_container">
-                        <div class="comments">s_sewon 바람아 그만 불어줘 제발~~...</div>
-                        <div class="comments1">더 보기</div>
-                    </div>
-                    <div class="comments1">댓글 <span id="count"></span> 모두 보기</div>
-                    <div class="comments1_box">
-                        <div class="comments">sunmerrr 세원님 너무 멋져요!!</div>
-                        <div class="comments">aida_shin.y 와 세원님 완전 화보</div>
-                        <div class="comments">dooreplay 세원님 정말 짱이에요!</div>
-                    </div>
-                    <div class="new_comments">
-                    </div>
-                    <div class="comments2">1일 전</div>
-                </div>
-            </div>
-            <div class="inputContainer">
-                <div class="type_comment">
-                    <input class="inputBox" type="text" placeholder="댓글 달기...">
-                </div>
-                <span>
-            <button class="buttonBox" type="submit">게시</button>
-          </span>
-            </div>
-        </div>
-    </article>
+    <jsp:include page="/WEB-INF/views/member/header/profile.jsp" flush="true" />
 
+    <!-- 드롭다운 메뉴 추가 -->
 
-    <aside>
-        <div class="feed_right_container">
-            <div class="my_profile">
-                <div class="profile_none">
-                    <div class="my_profile_box1">
-                        <img src="img/picture8.png" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_id">s_sewon</div>
-                </div>
-            </div>
-            <div class="recommendation_box">
-                <div class="recommendation">회원님을 위한 추천</div>
-                <div class="comment">모두 보기</div>
-            </div>
-            <div class="users">
-                <div class="user">
-                    <div class="my_profile_box2">
-                        <img src="img/p1.jpg" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_main_box">
-                        <div class="my_profile_id_box">
-                            <div class="my_profile_id1">bubugym</div>
-                            <div class="my_profile_id2">0427ys님 외 4명이 팔로우합니다</div>
-                        </div>
-                        <div class="follow">팔로우</div>
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="my_profile_box2">
-                        <img src="img/p2.jpg" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_main_box">
-                        <div class="my_profile_id_box">
-                            <div class="my_profile_id1">jj.www</div>
-                            <div class="my_profile_id2">hello님 외 7명이 팔로우합니다</div>
-                        </div>
-                        <div class="follow">팔로우</div>
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="my_profile_box2">
-                        <img src="img/p3.jpg" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_main_box">
-                        <div class="my_profile_id_box">
-                            <div class="my_profile_id1">choco1</div>
-                            <div class="my_profile_id2">hs.hon1님 외 5명이 팔로우합니다</div>
-                        </div>
-                        <div class="follow">팔로우</div>
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="my_profile_box2">
-                        <img src="img/p4.jpg" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_main_box">
-                        <div class="my_profile_id_box">
-                            <div class="my_profile_id1">aaawww11</div>
-                            <div class="my_profile_id2">world님 외 2명이 팔로우합니다</div>
-                        </div>
-                        <div class="follow">팔로우</div>
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="my_profile_box2">
-                        <img src="img/p5.jpg" alt="내 프로필">
-                    </div>
-                    <div class="my_profile_main_box">
-                        <div class="my_profile_id_box">
-                            <div class="my_profile_id1">lalahihi123</div>
-                            <div class="my_profile_id2">hi.son님 외 1명이 팔로우합니다</div>
-                        </div>
-                        <div class="follow">팔로우</div>
-                    </div>
-                </div>
-            </div>
-            <div class="other_box">
-                <div class="other1">
-                    <span class="span1">소개</span>
-                    <span class="span1">도움말</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">홍보 센터</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">API</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">채용 정보</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">개인정보처리방침</span>
-                    <span class="span1">∙</span></br>
-                </div>
-                <div class="other2">
-                    <span class="span1">약관</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">위치</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">인기 계정</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">해시태그</span>
-                    <span class="span1">∙</span>
-                    <span class="span1">언어</span>
-                </div>
-            </div>
-            <div class="other_box">
-                <span class="span1">© 2020 INSTAGRAM FROM FACEBOOK</span>
-            </div>
-        </div>
-    </aside>
+<%--
+    <!-- 푸터 -->
+    <div class="footer">
+        <span>회사소개 | 인재채용 | 회원약관 | 개인정보처리방침 | 이메일무단수집거부 | 채용정보 API | 재무문의 | 고객센터</span>
+    </div>--%>
+
 </div>
 <script src="/resources/script/main.js"></script>
 </body>
-
 </html>

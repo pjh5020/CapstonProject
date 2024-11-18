@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MainController {
+
     @GetMapping("/main")
     public String mainP(){
         return "member/main";

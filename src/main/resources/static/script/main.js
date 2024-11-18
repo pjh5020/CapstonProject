@@ -1,92 +1,31 @@
-const textBox = document.querySelector(".inputBox"); //input 변수 할당
-const summitButtonClick = document.querySelector(".buttonBox"); //버튼 변수 할당
-const feedComment = document.querySelector(".new_comments"); // 새로운 댓글이 달릴 div 할당
-const profileId1 = document.querySelector(".my_profile_id"); //s_sewon 이름 할당
+document.addEventListener('DOMContentLoaded', function () {
+    const images = [
+        "/resources/image/경민대배경.jpg",
+        "/resources/image/경민배경2.jpg",
+        "/resources/image/seoulcampuse2.jpg"
+    ];
 
-// 1. 코드 수정 전)게시 버튼 눌렀을때 댓글 기능 추가
-// summitButtonClick.addEventListener("click", clickButton);
+    let currentIndex = 0;
 
-// function clickButton() {
-//   const commentBox = document.createElement("span");
-//   const profileId = document.createElement("span");
-//   const br = document.createElement("br");
-//   commentBox.className = "newCommentBox";
-//   commentBox.innerHTML = textBox.value;
-//   profileId.className = "newCommentBox1";
-//   profileId.innerHTML = "s_sewon";
+    const postImage = document.getElementById('postImage');
+    const imageIndex = document.getElementById('imageIndex');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
 
-//   if (textBox.value != "") {
-//     feedComment.appendChild(profileId) +
-//       feedComment.appendChild(commentBox) +
-//       feedComment.appendChild(br);
-//     textBox.value = null;
-//   }
-// }
-
-// 2. 코드 수정 후)게시 버튼 눌렀을때 댓글 기능 추가
-summitButtonClick.addEventListener("click", clickButton);
-
-function clickButton() {
-    const commentBox = document.createElement("span");
-    const profileId = document.createElement("span");
-    const br = document.createElement("br");
-    commentBox.className = "newCommentBox";
-    commentBox.innerHTML = textBox.value;
-    profileId.className = "newCommentBox1";
-    profileId.innerHTML = "s_sewon";
-
-    if (textBox.value !== "" && textBox.value.trim() !== "") {
-        feedComment.appendChild(profileId) +
-        feedComment.appendChild(commentBox) +
-        feedComment.appendChild(br);
-        textBox.value = null;
+    function updateImage() {
+        postImage.src = images[currentIndex];
+        imageIndex.textContent = `${currentIndex + 1}/${images.length}`;
     }
-}
 
-// 엔터 쳤을때 댓글 기능 추가
-textBox.addEventListener("keypress", enter);
+    leftArrow.addEventListener('click', function () {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        updateImage();
+    });
 
-function enter(e) {
-    const commentBox = document.createElement("span");
-    const profileId1 = document.createElement("span");
-    const br = document.createElement("br");
-    const profileId = document.querySelector(".my_profile_id");
-    const textBoxTrim = textBox.value.trim();
-    profileId1.className = "newCommentBox1";
-    commentBox.className = "newCommentBox";
-    profileId1.innerHTML = "s_sewon";
-    commentBox.innerHTML = textBox.value;
+    rightArrow.addEventListener('click', function () {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        updateImage();
+    });
 
-    if (
-        textBox.value !== "" &&
-        textBox.value.trim() !== "" &&
-        e.key === "Enter"
-    ) {
-        feedComment.appendChild(profileId1) +
-        feedComment.appendChild(commentBox) +
-        feedComment.appendChild(br);
-        textBox.value = null;
-    }
-}
-
-//1. 코드 수정 전)글자 타이핑 했을때 '게시' 색깔 바뀌는 기능 추가
-
-// textBox.addEventListener("keydown", colorChange);
-
-// function colorChange() {
-//   if (textBox.value !== "") {
-//     summitButtonClick.style.color = "#0095F6";
-//   } else if (textBox.value === "")
-//     return (summitButtonClick.style.color = "#C0E0FD");
-// }
-
-//2. 코드 수정 후)글자 타이핑 했을때 '게시' 색깔 바뀌는 기능 추가
-textBox.addEventListener("keydown", colorChange);
-
-function colorChange() {
-    if (textBox.value !== "" && textBox.value.trim() !== "") {
-        summitButtonClick.style.color = "#0095F6";
-    } else if (textBox.value.trim() == "") {
-        return (summitButtonClick.style.color = "#C0E0FD");
-    }
-}
+    updateImage();
+});
