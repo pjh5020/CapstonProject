@@ -41,7 +41,7 @@ public class ScheduleService {
 
     @Transactional
     public void setScheduleInfo(UserDetailsImpl userDetails, ScheduleInfoRequestDto dto) {
-        Schedule schedule = scheduleRepository.findByUserEmail(userDetails.getEmail())
+        Schedule schedule = scheduleRepository.findByUser_UserEmail(userDetails.getEmail())
                 .orElseThrow(() -> new RuntimeException("사용자가 일치하지 않습니다."));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");

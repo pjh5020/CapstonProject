@@ -22,13 +22,13 @@ public class UserService {
         UserEntity user = userRepository.findById(userDetails.getEmail())
                 .orElseThrow(()->new RuntimeException("사용자가 일치하지 않습니다."));
 
-        user.setUseremail(dto.getUserEmail());
-        user.setUserpassword(dto.getUserPassword());
-        user.setUsername(dto.getUserName());
-        user.setUserdepartment(dto.getUserDepartment());
-        user.setUsergrade(dto.getUserGrade());
-        user.setUserphonenumber(dto.getUserPhoneNumber());
-        user.setUserprofileimage(imageService.saveImage(dto.getUserProfileImage()));
+        user.setUserEmail(dto.getUserEmail());
+        user.setUserPassword(dto.getUserPassword());
+        user.setUserName(dto.getUserName());
+        user.setUserDepartment(dto.getUserDepartment());
+        user.setUserGrade(dto.getUserGrade());
+        user.setUserPhoneNumber(dto.getUserPhoneNumber());
+        user.setUserProfileImage(imageService.saveImage(dto.getUserProfileImage()));
 
         userRepository.save(user);
     }

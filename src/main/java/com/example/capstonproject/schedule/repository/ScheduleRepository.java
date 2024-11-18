@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
-    Optional<Schedule> findByUserEmail(String userEmail);
+    Optional<Schedule> findByUser_UserEmail(String userEmail);
 }

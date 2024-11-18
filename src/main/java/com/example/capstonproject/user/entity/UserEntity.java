@@ -13,22 +13,34 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 @Table(name = "user")
 public class UserEntity {
-
     @Id
     @Column(name = "useremail")
-    private String useremail;
+    private String userEmail;
 
-    private String userpassword;
-    private String username;
-    private String userschool;
-    private String userdepartment;
-    private int usergrade;
-    private String userphonenumber;
-    private String userprofileimage;
+    @Column(name = "userpassword")
+    private String userPassword;
+
+    @Column(name = "username")
+    private String userName;
+
+    @Column(name = "userschool")
+    private String userSchool;
+
+    @Column(name = "userdepartment")
+    private String userDepartment;
+
+    @Column(name = "usergrade")
+    private int userGrade;
+
+    @Column(name = "userphonenumber")
+    private String userPhoneNumber;
+
+    @Column(name = "userprofileimage")
+    private String userProfileImage;
+
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private RolesType role = RolesType.ROLE_MEMBER;
-
 }

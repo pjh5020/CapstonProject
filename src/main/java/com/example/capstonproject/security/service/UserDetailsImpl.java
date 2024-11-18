@@ -30,8 +30,8 @@ public class UserDetailsImpl implements UserDetails {
                 List.of(new SimpleGrantedAuthority(user.getRole().name())) : null;
 
         return UserDetailsImpl.builder()
-                .email(user.getUseremail())
-                .password(user.getUserpassword())
+                .email(user.getUserEmail())
+                .password(user.getUserPassword())
                 .authorities(authorities)
                 .userType("USER")
                 .build();

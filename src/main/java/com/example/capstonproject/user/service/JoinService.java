@@ -28,25 +28,25 @@ public class JoinService {
             throw new IllegalArgumentException("Password cannot be null or empty");
         }
 
-        Boolean isExist = userRepository.existsByUseremail(email);
+        Boolean isExist = userRepository.existsByUserEmail(email);
 
         if (isExist) {
             throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
         }
 
         UserEntity userEntity = new UserEntity();
-        userEntity.setUseremail(joinDTO.getUseremail());  // 이메일 설정
-        userEntity.setUserpassword(passwordEncoder.encode(joinDTO.getUserpassword()));  // 비밀번호 암호화 후 설정
-        userEntity.setUsername(joinDTO.getUsername());  // 이름 설정
-        userEntity.setUserschool(joinDTO.getUserschool());  // 학교 설정
-        userEntity.setUserdepartment(joinDTO.getUserdepartment());  // 학과 설정
-        userEntity.setUsergrade(joinDTO.getUsergrade());  // 학년 설정
-        userEntity.setUserphonenumber(joinDTO.getUserphonenumber());  // 전화번호 설정
+        userEntity.setUserEmail(joinDTO.getUseremail());  // 이메일 설정
+        userEntity.setUserPassword(passwordEncoder.encode(joinDTO.getUserpassword()));  // 비밀번호 암호화 후 설정
+        userEntity.setUserName(joinDTO.getUsername());  // 이름 설정
+        userEntity.setUserSchool(joinDTO.getUserschool());  // 학교 설정
+        userEntity.setUserDepartment(joinDTO.getUserdepartment());  // 학과 설정
+        userEntity.setUserGrade(joinDTO.getUsergrade());  // 학년 설정
+        userEntity.setUserPhoneNumber(joinDTO.getUserphonenumber());  // 전화번호 설정
 
         if (joinDTO.getUserprofileimage() == null || joinDTO.getUserprofileimage().isEmpty()) {
-            userEntity.setUserprofileimage("default_profile_image.png");  // 기본 프로필 이미지 설정
+            userEntity.setUserProfileImage("default_profile_image.png");  // 기본 프로필 이미지 설정
         } else {
-            userEntity.setUserprofileimage(joinDTO.getUserprofileimage());  // 프로필 이미지 설정
+            userEntity.setUserProfileImage(joinDTO.getUserprofileimage());  // 프로필 이미지 설정
         }
         userEntity.setRole(RolesType.ROLE_MEMBER);  // 기본 역할 설정
 
@@ -56,6 +56,6 @@ public class JoinService {
      * ID(userEmail) Check
      */
     public boolean checkId(String userEmail){
-        return !userRepository.findByUseremail(userEmail).isPresent();
+        return !userRepository.findByUserEmail(userEmail).isPresent();
     }
 }
