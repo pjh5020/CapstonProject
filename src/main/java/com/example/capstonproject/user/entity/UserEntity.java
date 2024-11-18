@@ -17,7 +17,6 @@ import lombok.Setter;
 public class UserEntity {
     @Id
     @Column(name = "useremail")
-
     private String userEmail;
 
     @Column(name = "userpassword")
