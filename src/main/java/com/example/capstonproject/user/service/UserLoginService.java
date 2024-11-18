@@ -73,9 +73,8 @@ public class UserLoginService {
     /**
      * Email(userEmail) Check
      */
-    public boolean checkEmail(String useremail){
-        System.out.println("Service: checkEmail method called with " + useremail);
-        return !userRepository.existsByUseremail(useremail);
+    public void checkEmail(){
+
     }
 }
 
