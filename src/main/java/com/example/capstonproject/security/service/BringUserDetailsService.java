@@ -18,7 +18,7 @@ public class BringUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("BringUserDetailsService: loadUserByUsername called with " + username);
 
-        UserEntity user = userRepository.findByUseremail(username).orElse(null);
+        UserEntity user = userRepository.findByUserEmail(username).orElse(null);
         if (user != null) {
             return UserDetailsImpl.fromUser(user);
         }

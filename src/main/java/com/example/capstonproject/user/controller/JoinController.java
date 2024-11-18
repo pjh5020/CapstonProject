@@ -1,18 +1,24 @@
 package com.example.capstonproject.user.controller;
 
-import com.example.capstonproject.image.ImageService;
+
+import com.example.capstonproject.response.BfResponse;
 import com.example.capstonproject.response.ResponseCode;
 import com.example.capstonproject.response.ResponseDto;
 import com.example.capstonproject.response.ResponseMessage;
 import com.example.capstonproject.user.dto.JoinDTO;
+import com.example.capstonproject.user.dto.MailDto;
 import com.example.capstonproject.user.service.JoinService;
+import com.univcert.api.UnivCert;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.transform.Result;
 import java.util.Map;
+import java.util.Objects;
 
 
 @Controller

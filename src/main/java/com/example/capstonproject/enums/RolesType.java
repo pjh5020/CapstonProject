@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum RolesType {
 	ROLE_ADMIN, // 관리자
-	ROLE_MEMBER, // 일반 회원
+	ROLE_MEMBER,// 일반 회원
+	ROLE_DEACTIVATE, //비활성화
 	ROLE_COMPANY; // 기업 회원
 
 	@JsonCreator
