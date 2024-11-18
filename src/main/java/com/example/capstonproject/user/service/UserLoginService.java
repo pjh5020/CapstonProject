@@ -33,11 +33,11 @@ public class UserLoginService {
      */
     public UserLoginTokenDTO login(UserLoginDTO userLoginDTO) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                userLoginDTO.getUseremail(),
-                userLoginDTO.getUserpassword()
+                userLoginDTO.getUserEmail(),
+                userLoginDTO.getUserPassword()
         );/* 이메일과 비밀번호를 사용하여 UsernamePasswordAuthenticationToken 객체를 생성합니다.*/
 
-        System.out.println("Service: login method called with " + userLoginDTO.getUseremail());
+        System.out.println("Service: login method called with " + userLoginDTO.getUserEmail());
         System.out.println("authenticationToken : " + authenticationToken);
 
         if (userLoginDTO == null) {

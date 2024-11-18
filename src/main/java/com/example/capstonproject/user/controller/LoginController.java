@@ -31,7 +31,7 @@ public class LoginController {
     @PostMapping("/userLogin")
     public ResponseEntity<BfResponse<UserLoginTokenDTO>> login(@Valid @RequestBody UserLoginDTO loginDTO) {
         // 디버그 로그 추가
-        System.out.println("Controller: login method called with " + loginDTO.getUseremail());
+        System.out.println("Controller: login method called with " + loginDTO.getUserEmail());
         return ResponseEntity.ok(new BfResponse<>(userLoginService.login(loginDTO)));
         /*  로직 설명
         1.LoginController에서 로그인 요청 처리
