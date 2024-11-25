@@ -41,5 +41,10 @@ public enum GlobalErrorCode implements BaseErrorCode {
     public String getErrorMessage() {
         return this.errorMessage; // errorMessage 필드 반환
     }
+
+    @Override
+    public int getErrorCode() {
+        return this.errorCode;
+    }
 }
 
