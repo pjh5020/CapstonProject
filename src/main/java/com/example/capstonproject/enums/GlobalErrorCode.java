@@ -32,5 +32,14 @@ public enum GlobalErrorCode implements BaseErrorCode {
         return new ErrorResponse(this.errorCode, this.errorMessage);
     }
 
+    @Override
+    public HttpStatus getStatus() {
+        return this.status;
+    }
+
+    @Override
+    public String getErrorMessage() {
+        return this.errorMessage; // errorMessage 필드 반환
+    }
 }
 

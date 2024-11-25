@@ -8,7 +8,6 @@ import com.example.capstonproject.response.ResponseMessage;
 import com.example.capstonproject.user.dto.JoinDTO;
 import com.example.capstonproject.user.dto.MailDto;
 import com.example.capstonproject.user.service.JoinService;
-import com.univcert.api.UnivCert;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

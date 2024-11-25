@@ -15,6 +15,9 @@ public class PageController {
     @GetMapping("/myProfile")
     public String myProfile(){return "member/myProfile";}
 
+    @GetMapping("/profile")
+    public String profile(){return "member/profile/profile";}
+
     @GetMapping("/loginForm")
     public String loginP(){return "member/userLogin";}
 
