@@ -27,5 +27,7 @@ public class PageController {
     @GetMapping("/picture")
     public String picture(){return "member/picture";}
 
+    @GetMapping("/schedule")
+    public String schedule(){return "member/schedule/schedule";}
 }
 
