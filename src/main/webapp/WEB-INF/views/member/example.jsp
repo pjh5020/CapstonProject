@@ -309,7 +309,6 @@
 <button id="close-modal" class="close-area">
     X
 </button>
-<jsp:include page="/WEB-INF/views/member/header/profile.jsp" flush="true" />
 
 <script>
     // 모달 열기

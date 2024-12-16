@@ -165,6 +165,54 @@
         </div>
     </div>
 </div>
+<jsp:include page="/WEB-INF/views/member/header/profile.jsp" flush="true" />
+<script>
+    // Updated schedule data to resemble the provided example
+    const scheduleData = [
+        { day: "월", time: "9시", subject: "자바", color: "bg-yellow" },
+        { day: "화", time: "10시", subject: "C언어", color: "bg-blue" },
+        { day: "수", time: "11시", subject: "파이썬", color: "bg-green" },
+        { day: "목", time: "13시", subject: "AI 알고리즘", color: "bg-red" },
+        { day: "금", time: "15시", subject: "데이터베이스 활용", color: "bg-blue" }
+    ];
+
+    // Function to populate the schedule table
+    function populateSchedule(data) {
+        data.forEach(item => {
+            const dayColumns = { "월": 1, "화": 2, "수": 3, "목": 4, "금": 5 };
+            const dayIndex = dayColumns[item.day];
+            const timeRow = Array.from(document.querySelectorAll("tbody tr")).find(
+                row => row.firstElementChild.textContent.trim() === item.time
+            );
+
+            if (timeRow && dayIndex) {
+                const cell = timeRow.children[dayIndex];
+                if (cell) {
+                    cell.style.backgroundColor = getColorByClass(item.color); // Set background color
+                    cell.innerHTML = `<span style="color: black; font-weight: bold;">${'${item.subject}'}1</span>`; // Add subject text
+                }
+            }
+        });
+    }
+
+    // Map class names to colors
+    function getColorByClass(className) {
+        const colorMap = {
+            "bg-yellow": "#ffd966",
+            "bg-blue": "#add8e6",
+            "bg-green": "#b6d7a8",
+            "bg-red": "#e06666"
+        };
+        return colorMap[className] || "#ffffff"; // Default to white if class not found
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        populateSchedule(scheduleData);
+    });
+</script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
+sex
